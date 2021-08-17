@@ -1,5 +1,8 @@
 package org.specVisualizer.Model.Audio;
 
+import org.specVisualizer.Model.MathUtil.Complex;
+import org.specVisualizer.Model.MathUtil.FastFourierTransform;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -13,6 +16,9 @@ public class SoundRecordUtil {
     private TargetDataLine audioLine;
     private AudioFormat format;
     private boolean isRunning;
+
+
+
 
     private static final float AUDIO_VOLUME = 5.0f;
     private static final float DECAY_FACTOR = 0.12f;
@@ -41,6 +47,12 @@ public class SoundRecordUtil {
 
         while (isRunning){
             System.out.println(Arrays.toString(buffer));
+            Complex [] x = new Complex[BUFFER_SIZE];
+            for (int i = 0; i < buffer.length; i++) {
+                x[i] = new Complex(buffer[i], 0 );
+            }
+            Complex [] fourierTransform = FastFourierTransform.FFT(x);
+            System.out.println(Arrays.toString(fourierTransform));
             bytesRead = audioLine.read(buffer, 0, buffer.length);
             recordBytes.write(buffer, 0, bytesRead);
 

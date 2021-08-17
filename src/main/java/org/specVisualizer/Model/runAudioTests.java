@@ -38,18 +38,18 @@ public class runAudioTests {
             }
         };
 
-        /*ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(2);
         executorService.schedule(record, 30, TimeUnit.MILLISECONDS);
         executorService.schedule(stopRecord, RECORD_TIME, TimeUnit.SECONDS);
-        executorService.shutdown();*/
+        executorService.shutdown();
 
-        try {
+        /*try {
             Clip clip = SoundRecordUtil.loadAudioClip("src/main/resources/Audio/Record.wav");
             SoundRecordUtil.playAudio(clip, 5);
         } catch (IOException | UnsupportedAudioFileException | LineUnavailableException e) {
             e.printStackTrace();
         }
-
+*/
 
     }
 }
